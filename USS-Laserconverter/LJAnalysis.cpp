@@ -504,6 +504,7 @@ TTree* LJAnalysis::convert(std::string filename) {
 			
 			//Replaceing all "," by "."
 			std::replace(sline.begin(), sline.end(), ',', '.');
+			dataVec = split(sline, _deliminator.at(0));
 				
 			if (isFirstTime) {
 				isFirstTime = false;
