@@ -483,12 +483,11 @@ TTree* LJAnalysis::convert(std::string filename) {
 	int linenum = -1;
 	std::string sline;
 	std::vector <std::string> dataVec;
-
+	bool isFirstTime = true;
 	if (!infile.is_open()) {
 		std::cerr << "ERROR: Unable to open input file '" << filename << "'!" << std::endl;
 		exit(1);
-	}
-	else {
+	} else {
 		//std::cout << "Starting conversion!" << std::endl;
 		while (!infile.eof()) {
 			linenum++;
@@ -505,7 +504,11 @@ TTree* LJAnalysis::convert(std::string filename) {
 			
 			//Replaceing all "," by "."
 			std::replace(sline.begin(), sline.end(), ',', '.');
-			dataVec = split(sline,_deliminator.at(0));
+				
+			if (isFirstTime) {
+				isFirstTime = false;
+				std::cout << "Found line with " << dataVec.size() << " elements!" << std::endl;
+			}
 			for (int i = 0; i < dataVec.size(); i++) {
 				float myZ = atof(dataVec.at(i).c_str());
 				float myX = i * _xResolution + _xOffset;

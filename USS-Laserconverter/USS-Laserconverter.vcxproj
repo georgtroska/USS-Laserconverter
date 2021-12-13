@@ -167,6 +167,7 @@
     <ClInclude Include="args.h" />
     <ClInclude Include="cxxopts.h" />
     <ClInclude Include="global.h" />
+    <ClInclude Include="identifyFormat.h" />
     <ClInclude Include="LJAnalysis.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />

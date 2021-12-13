@@ -8,6 +8,7 @@
 #include <TFile.h>
 #include "LJAnalysis.h"
 #include <TStyle.h>
+#include "identifyFormat.h"
 
 
 
@@ -36,7 +37,7 @@ int main(int argc, const char* argv[]) {
 	if (argc == 1) dirname = std::string("./");
 	if (argc == 2) dirname = std::string(argv[2]);
 
-   std::string ext = ".csv";
+    std::string ext = ".csv";
 	TSystemDirectory dir(dirname.c_str(), dirname.c_str());
 	TList* files = dir.GetListOfFiles();
 	if (files) {
@@ -46,6 +47,7 @@ int main(int argc, const char* argv[]) {
 		TIter next(files);
 		while ((file = (TSystemFile*)next())) {
 
+			DataKind kind = kUnknown;
 			fname = file->GetName();
 			std::string myFilename = std::string(fname.Data());
 			if (!file->IsDirectory() && fname.EndsWith(ext.c_str())) {
@@ -60,6 +62,10 @@ int main(int argc, const char* argv[]) {
 				else {
 					filename = dirname + "/" + myFilename;
 				}
+
+				//Checking what might be inside??
+				DataKind
+				kind = identifyFormat(filename);
 				
 				//Create the root-filename from the csv-filename
 				std::string rootfilename = std::string(myFilename); 
