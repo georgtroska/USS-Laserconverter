@@ -112,6 +112,7 @@ void LJAnalysis::print(std::string opt) {
 	TCanvas* c = new TCanvas("c", "CANVAS", 1200, 800);
 	if (opt == "range") {
 		std::string newfilename = std::string(_name) + "-col.gif";
+		_hRange->SetTitle(_name.c_str());
 		_hRange->GetZaxis()->SetRangeUser(0, 0.2);
 		_hRange->Draw("colz");
 		_grNullPos->Draw("lp");
@@ -119,6 +120,7 @@ void LJAnalysis::print(std::string opt) {
 		c->SaveAs(newfilename.c_str());
 	} else if (opt == "amplitude") {
 		c->SetGrid(0, 1);
+		_grAmplPit->SetTitle(_name.c_str());
 		std::string newfilename = std::string(_name) + "-Ampl.gif";
 		_grAmplPit->Draw("alp");
 		_grAmplPit->GetYaxis()->SetRangeUser(0, 0.2);
@@ -126,14 +128,16 @@ void LJAnalysis::print(std::string opt) {
 	}
 	else if (opt == "cross") {
 		c->SetGrid(1, 1);
+		_hRangeCross->SetTitle(_name.c_str());
 		std::string newfilename = std::string(_name) + "-cross.gif";
-		_hRangeCross->GetZaxis()->SetRangeUser(0, 0.2);
+		_hRangeCross->GetYaxis()->SetRangeUser(0, 0.2);
 		_hRangeCross->Draw("hist");
 		c->SaveAs(newfilename.c_str());
 	}
 
 	if (opt == "rangesm") {
 		std::string newfilename = std::string(_name) + "-colsm.gif";
+		_hRangeSmooth->SetTitle(_name.c_str());
 		_hRangeSmooth->GetZaxis()->SetRangeUser(0, 0.2);
 		_hRangeSmooth->Draw("colz");
 		_grNullPos->Draw("lp");
@@ -141,6 +145,7 @@ void LJAnalysis::print(std::string opt) {
 		c->SaveAs(newfilename.c_str());
 	}
 	else if (opt == "crosssm") {
+		_hRangeCrossSmooth->SetTitle(_name.c_str());
 		std::string newfilename = std::string(_name) + "-crosssm.gif";
 		_hRangeCrossSmooth->Draw("");
 		c->SaveAs(newfilename.c_str());

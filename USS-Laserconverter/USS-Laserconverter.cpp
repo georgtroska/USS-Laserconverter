@@ -15,7 +15,7 @@
 int main(int argc, const char* argv[]) {
 	std::cerr << std::endl;
 	std::cerr << "This is the USS Laserconverter converter!" << std::endl;
-	std::cerr << "Version 1.0.0, 2021-12-09" << std::endl;
+	std::cerr << "Version 1.0.1, 2021-12-09" << std::endl;
 	std::cerr << std::endl;
 	std::cerr << "Developed by" << std::endl;
 	std::cerr << "\tInfineon Technologies AG, Warstein" << std::endl;
