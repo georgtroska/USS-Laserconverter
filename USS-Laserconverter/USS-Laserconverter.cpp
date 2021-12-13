@@ -64,7 +64,6 @@ int main(int argc, const char* argv[]) {
 				}
 
 				//Checking what might be inside??
-				DataKind
 				kind = identifyFormat(filename);
 				
 				//Create the root-filename from the csv-filename
@@ -83,17 +82,18 @@ int main(int argc, const char* argv[]) {
 			
 				
 				TFile* file = new TFile(outfilename.c_str(), "RECREATE");
-				LJAnalysis *ljana = new LJAnalysis();
+				LJAnalysis *ljana = new LJAnalysis(kUnknown);
 				ljana->setName(filename_wo_ext);
 				TTree *tree = ljana->convert(filename);
-				ljana->analysis();
+				//ljana->analysis();
 				file->Write();
+				/*
 				ljana->print("range");
 				//ljana->print("rangesm");
 				ljana->print("amplitude");
 				ljana->print("cross");
 				//ljana->print("crosssm");
-
+				*/
 
 				delete ljana;
 

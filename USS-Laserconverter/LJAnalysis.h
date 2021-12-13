@@ -10,6 +10,7 @@
 #include <TH1F.h>
 #include <TH2F.h>
 #include <TGraph.h>
+#include "identifyFormat.h"
 
 
 
@@ -17,6 +18,7 @@
 class LJAnalysis {
 protected:
 	TTree* _tree;
+	DataKind _kind;
 
 	std::string _name;
 
@@ -26,13 +28,20 @@ protected:
 	static const int _nDots = 400; // number of dots per line (this is the number of colums in file)
 	std::string _deliminator;
 
-	//Tilt, offset and pitposition is analysed during conversion phase
-	TH1F* _hTiltNom;
-	TH1F* _hTiltDenom;
-	TH1F* _hTilt;
-	float _slope; //This is the tilt of the sensor
-	float _offset; //this is the distance in the middle point
-	float _pitpos; //This is the position of the pit
+	//Tilt, offset and pitposition is analysed during conversion phase 1 is for sensor A, 2 is for sensor B
+	TH1F* _hTiltNom1;
+	TH1F* _hTiltDenom1;
+	TH1F* _hTilt1;
+	float _slope1; //This is the tilt of the sensor
+	float _offset1; //this is the distance in the middle point
+	float _pitpos1; //This is the position of the pit
+
+	TH1F* _hTiltNom2;
+	TH1F* _hTiltDenom2;
+	TH1F* _hTilt2;
+	float _slope2; //This is the tilt of the sensor
+	float _offset2; //this is the distance in the middle point
+	float _pitpos2; //This is the position of the pit
 
 	// Variables and methods for TTree analysis
 	Int_t GetEntry(Long64_t entry);
@@ -44,25 +53,46 @@ protected:
 
 
 	//Histograms and stuff like this:
+	//SENSOR A
+	TH2F * _hRangeNom1;
+	TH2F * _hRangeDenom1;
+	TH2F * _hRange1;
+	TH2F * _hRangeNomSmooth1;
+	TH2F * _hRangeDenomSmooth1;
+	TH2F * _hRangeSmooth1;
 
-	TH2F * _hRangeNom;
-	TH2F * _hRangeDenom;
-	TH2F * _hRange;
-	TH2F * _hRangeNomSmooth;
-	TH2F * _hRangeDenomSmooth;
-	TH2F * _hRangeSmooth;
+	TH1F* _hRangeCrossNom1;
+	TH1F* _hRangeCrossDenom1;
+	TH1F* _hRangeCross1;
 
-	TH1F* _hRangeCrossNom;
-	TH1F* _hRangeCrossDenom;
-	TH1F* _hRangeCross;
+	TH1F* _hRangeCrossNomSmooth1;
+	TH1F* _hRangeCrossDenomSmooth1;
+	TH1F* _hRangeCrossSmooth1;
 
-	TH1F* _hRangeCrossNomSmooth;
-	TH1F* _hRangeCrossDenomSmooth;
-	TH1F* _hRangeCrossSmooth;
+	TGraph * _grAmplPit1;
+	TGraph * _grNullPos1;
+	TGraph * _grAmplPos1;
 
-	TGraph * _grAmplPit;
-	TGraph * _grNullPos;
-	TGraph * _grAmplPos;
+
+	//Sensor B
+	TH2F* _hRangeNom2;
+	TH2F* _hRangeDenom2;
+	TH2F* _hRange2;
+	TH2F* _hRangeNomSmooth2;
+	TH2F* _hRangeDenomSmooth2;
+	TH2F* _hRangeSmooth2;
+
+	TH1F* _hRangeCrossNom2;
+	TH1F* _hRangeCrossDenom2;
+	TH1F* _hRangeCross2;
+
+	TH1F* _hRangeCrossNomSmooth2;
+	TH1F* _hRangeCrossDenomSmooth2;
+	TH1F* _hRangeCrossSmooth2;
+
+	TGraph* _grAmplPit2;
+	TGraph* _grNullPos2;
+	TGraph* _grAmplPos2;
 
 	
 	
@@ -71,7 +101,7 @@ protected:
 
 
 public:
-	LJAnalysis();
+	LJAnalysis(const DataKind kind);
 	void print(std::string opt);//Filename without extension!!!
 
 	virtual ~LJAnalysis();

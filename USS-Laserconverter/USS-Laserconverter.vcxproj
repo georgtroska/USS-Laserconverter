@@ -156,6 +156,7 @@
   <ItemGroup>
     <ClCompile Include="args.cpp" />
     <ClCompile Include="global.cpp" />
+    <ClCompile Include="identifyFormat.cpp" />
     <ClCompile Include="LJAnalysis.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="USS-Laserconverter.cpp" />

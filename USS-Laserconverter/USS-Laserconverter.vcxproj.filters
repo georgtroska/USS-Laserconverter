@@ -30,6 +30,9 @@
     <ClCompile Include="global.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="identifyFormat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="USS-Laserconverter.vcxproj.user" />
